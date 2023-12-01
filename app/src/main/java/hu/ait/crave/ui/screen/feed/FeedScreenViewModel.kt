@@ -29,7 +29,7 @@ class FeedScreenViewModel : ViewModel() {
             FirebaseFirestore.getInstance().collection(WritePostScreenViewModel.COLLECTION_POSTS)
                 .addSnapshotListener() { snapshot, e ->
                     val response = if (snapshot != null) {
-                        val postList = snapshot.toObjects(Post::class.java)
+                        val postList = snapshot.toObjects(Post.Post::class.java)
                         val postWithIdList = mutableListOf<Post.PostWithId>()
 
                         postList.forEachIndexed { index, post ->
