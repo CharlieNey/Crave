@@ -19,11 +19,13 @@ import androidx.navigation.compose.rememberNavController
 import hu.ait.crave.ui.navigation.Screen
 import hu.ait.crave.ui.screen.feed.FeedScreen
 import hu.ait.crave.ui.screen.login.LoginScreen
+import hu.ait.crave.ui.screen.myrecipes.MyRecipesScreen
 import hu.ait.crave.ui.screen.writepost.WritePostScreen
 import hu.ait.crave.ui.theme.CraveTheme
 
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -62,11 +64,17 @@ fun NavGraph(
             FeedScreen(
                 onNavigateToWritePost = {
                     navController.navigate(Screen.WritePost.route)
+                },
+                onNavigateToMyRecipeScreen = {
+                    navController.navigate(Screen.MyRecipes.route)
                 }
             )
         }
         composable(Screen.WritePost.route) {
             WritePostScreen()
+        }
+        composable(Screen.MyRecipes.route) {
+            MyRecipesScreen()
         }
     }
 }
