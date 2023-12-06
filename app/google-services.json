@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "440613983060",
+    "project_id": "crave-8515a",
+    "storage_bucket": "crave-8515a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440613983060:android:f4767277501ba620766ec1",
+        "android_client_info": {
+          "package_name": "hu.ait.crave"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM0kldFfalGtUaBbU28oIYDN7x7TNKeMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -46,7 +46,7 @@ fun FeedScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("AIT Forum") },
+                title = { Text("Crave") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor =
                     MaterialTheme.colorScheme.secondaryContainer
