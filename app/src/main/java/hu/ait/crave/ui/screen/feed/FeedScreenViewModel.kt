@@ -53,6 +53,8 @@ class FeedScreenViewModel : ViewModel() {
 }
 
 
+
+
 sealed interface MainScreenUIState {
     object Init : MainScreenUIState
     data class Success(val postList: List<Post.PostWithId>) : MainScreenUIState

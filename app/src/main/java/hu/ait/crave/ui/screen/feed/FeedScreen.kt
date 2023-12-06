@@ -33,12 +33,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.lazy.items
 import coil.compose.AsyncImage
 import hu.ait.crave.data.Post
+import hu.ait.crave.ui.screen.recipe.RecipeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen(
     feedScreenViewModel: FeedScreenViewModel = viewModel(),
-    onNavigateToWritePost: () -> Unit
+    onNavigateToWritePost: () -> Unit,
+    onNavigateToMyRecipeScreen: () -> Unit
 ) {
     val postListState = feedScreenViewModel.postsList().collectAsState(
         initial = MainScreenUIState.Init)
@@ -53,7 +55,9 @@ fun FeedScreen(
                 ),
                 actions = {
                     IconButton(
-                        onClick = { }
+                        onClick = {
+                            onNavigateToMyRecipeScreen()
+                        }
                     ) {
                         Icon(Icons.Filled.Info, contentDescription = "Info")
                     }
