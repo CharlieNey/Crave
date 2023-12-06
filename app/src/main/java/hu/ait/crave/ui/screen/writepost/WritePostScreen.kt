@@ -31,6 +31,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import hu.ait.crave.R
+import hu.ait.crave.ui.navigation.Screen
 import java.io.File
 
 
@@ -38,7 +39,8 @@ import java.io.File
 @RequiresApi(Build.VERSION_CODES.P)
 @Composable
 fun WritePostScreen(
-    writePostScreenViewModel: WritePostScreenViewModel = viewModel()
+    writePostScreenViewModel: WritePostScreenViewModel = viewModel(),
+    onNavigateToFeedScreen: () -> Unit
 ) {
     var postTitle by remember { mutableStateOf("") }
     var postBody by remember { mutableStateOf("") }
@@ -126,6 +128,7 @@ fun WritePostScreen(
                         postBody
                     )
             }
+           onNavigateToFeedScreen()
         }) {
             Text(text = "Upload")
         }
