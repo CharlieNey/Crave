@@ -49,7 +49,7 @@ fun LoginScreen(
 
     Box() {
         Text(
-            text = "AIT Forum",
+            text = "Crave",
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = 50.dp),

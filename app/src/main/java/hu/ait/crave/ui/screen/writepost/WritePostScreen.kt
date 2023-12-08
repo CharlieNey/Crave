@@ -3,6 +3,7 @@ package hu.ait.crave.ui.screen.writepost
 import android.content.Context
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -87,6 +88,7 @@ fun WritePostScreen(
         // permission here...
         if (cameraPermissionState.status.isGranted) {
             Button(onClick = {
+                Log.e("camera", "Opening camera")
                 val uri = ComposeFileProvider.getImageUri(context)
                 imageUri = uri
                 cameraLauncher.launch(uri) // opens the built in camera
@@ -100,7 +102,9 @@ fun WritePostScreen(
                 } else {
                     "Give permission for using photos with items"
                 }
+
                 Text(text = permissionText)
+
                 Button(onClick = {
                     cameraPermissionState.launchPermissionRequest()
                 }) {
@@ -118,8 +122,11 @@ fun WritePostScreen(
 
         Button(onClick = {
             if (imageUri == null) {
+                Log.e("camera", "no image in post")
                 writePostScreenViewModel.uploadPost(postTitle, postBody)
             } else {
+                Log.e("camera", "image in post: $imageUri")
+
                 writePostScreenViewModel
                     .uploadPostImage(
                         context.contentResolver,
@@ -128,7 +135,9 @@ fun WritePostScreen(
                         postBody
                     )
             }
-           onNavigateToFeedScreen()
+           //onNavigateToFeedScreen()
+            Thread.sleep(600)
+            onNavigateToFeedScreen()
         }) {
             Text(text = "Upload")
         }
@@ -152,6 +161,9 @@ fun WritePostScreen(
 
             else -> {}
         }
+        //Thread.sleep(600)
+        //onNavigateToFeedScreen()
+
     }
 }
 
@@ -168,6 +180,8 @@ class ComposeFileProvider : FileProvider(
                 directory,
             )
             val authority = context.packageName + ".fileprovider"
+            Log.e("camera", "getting uri...")
+            Log.e("camera", "URI: ${getUriForFile(context, authority, file)}")
             return getUriForFile(
                 context,
                 authority,
