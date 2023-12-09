@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import hu.ait.crave.ui.navigation.Screen
+import hu.ait.crave.ui.screen.SplashScreen
 import hu.ait.crave.ui.screen.feed.FeedScreen
 import hu.ait.crave.ui.screen.login.LoginScreen
 import hu.ait.crave.ui.screen.myrecipes.MyRecipesScreen
@@ -51,8 +52,14 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.route
+        startDestination = Screen.SplashScreen.route
     ) {
+
+        composable(Screen.SplashScreen.route) {
+            SplashScreen(
+                onNavigateToMain = { navController.navigate(Screen.Login.route) }
+        ) }
+
         composable(Screen.Login.route) {
             LoginScreen(
                 onLoginSuccess = {

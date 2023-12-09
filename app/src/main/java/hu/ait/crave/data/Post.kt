@@ -6,7 +6,11 @@ class Post {
         var author: String = "",
         var title: String = "",
         var body: String = "",
-        var imgUrl: String = ""
+        var imgUrl: String = "",
+        val likes: Int = 0,
+        val likedBy: List<String> = emptyList()
+
+
     )
 
     data class PostWithId(

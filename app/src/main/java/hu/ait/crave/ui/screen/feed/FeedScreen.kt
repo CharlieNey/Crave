@@ -33,9 +33,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material.icons.outlined.ThumbUp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import hu.ait.crave.R
 import hu.ait.crave.data.Post
 import hu.ait.crave.ui.screen.recipe.RecipeScreen
 
@@ -95,6 +98,9 @@ fun FeedScreen(
                             onRemoveItem = {
                                 feedScreenViewModel.deletePost(it.postId)
                             },
+                            onLikeClick = {
+                                feedScreenViewModel.likePost(it.postId)
+                            },
                             currentUserId = feedScreenViewModel.currentUserId)
                     }
                 }
@@ -109,6 +115,7 @@ fun FeedScreen(
 fun PostCard(
     post: Post.Post,
     onRemoveItem: () -> Unit = {},
+    onLikeClick: () -> Unit = {},
     currentUserId: String = ""
 ) {
     Card(
@@ -163,6 +170,20 @@ fun PostCard(
                             tint = Color.Red
                         )
                     }
+
+                    if (!post.likedBy.contains(currentUserId)) {
+                        Icon(imageVector = Icons.Outlined.ThumbUp,
+                            contentDescription = "Like",
+                            modifier = Modifier.clickable {
+                                    onLikeClick()
+                            }
+                        )
+                    }
+                    else {
+                        Icon(imageVector = Icons.Filled.ThumbUp,
+                            contentDescription = "Liked")
+                    }
+                    Text(post.likes.toString())
                 }
             }
 

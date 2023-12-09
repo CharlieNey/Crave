@@ -2,6 +2,7 @@ package hu.ait.crave.ui.screen.feed
 
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import hu.ait.crave.data.Post
@@ -22,6 +23,19 @@ class FeedScreenViewModel : ViewModel() {
         FirebaseFirestore.getInstance().collection(
             WritePostScreenViewModel.COLLECTION_POSTS
         ).document(postKey).delete()
+    }
+
+
+    fun likePost(postId: String) {
+        val postRef = FirebaseFirestore.getInstance()
+            .collection(WritePostScreenViewModel.COLLECTION_POSTS)
+            .document(postId)
+
+        postRef.update(
+                    mapOf(
+                        "likes" to FieldValue.increment(1),
+                        "likedBy" to FieldValue.arrayUnion(currentUserId)
+                    ))
     }
 
     fun postsList() = callbackFlow {
@@ -49,10 +63,7 @@ class FeedScreenViewModel : ViewModel() {
             snapshotListener.remove()
         }
     }
-
 }
-
-
 
 
 sealed interface MainScreenUIState {
