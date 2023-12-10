@@ -22,8 +22,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import hu.ait.crave.R
 import hu.ait.crave.ui.screen.feed.FeedScreenViewModel
 import hu.ait.crave.ui.screen.feed.MainScreenUIState
 import hu.ait.crave.ui.screen.feed.PostCard
@@ -41,7 +47,16 @@ fun MyRecipesScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("My Recipes") },
+                title = {
+                    Text(
+                        "My Recipes",
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp
+                        )
+                    )
+                },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = Color.White
                 ),
