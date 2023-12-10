@@ -1,12 +1,15 @@
 package hu.ait.crave.ui.screen.login
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Password
@@ -28,11 +31,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.AutofillType
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import hu.ait.crave.R
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,13 +54,7 @@ fun LoginScreen(
     val coroutineScope = rememberCoroutineScope()
 
     Box() {
-        Text(
-            text = "Crave",
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 50.dp),
-            fontSize = 30.sp
-        )
+        
         Column(
             modifier = Modifier
                 .align(Alignment.Center)
@@ -62,6 +62,26 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            //Image(painter = R.drawable.craveicon, contentDescription = )
+            
+            Spacer(modifier = Modifier.size(35.dp))
+            
+            Text(
+                text = "Login",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                modifier = Modifier.padding(horizontal = 15.dp)
+            )
+            Text(
+                text = "Please Login to Continue",
+                fontSize = 16.sp,
+                color = Color.Gray
+            )
+            
+            Spacer(modifier = Modifier.size(70.dp))
+
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(0.8f),
                 label = {

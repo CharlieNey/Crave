@@ -112,6 +112,9 @@ fun FeedScreen(
                             onLikeClick = {
                                 feedScreenViewModel.likePost(it.postId)
                             },
+                            onDislikeClick = {
+                                feedScreenViewModel.unlikePost(it.postId)
+                            },
                             currentUserId = feedScreenViewModel.currentUserId)
                     }
                 }
@@ -127,6 +130,7 @@ fun PostCard(
     post: Post.Post,
     onRemoveItem: () -> Unit = {},
     onLikeClick: () -> Unit = {},
+    onDislikeClick: () -> Unit = {},
     currentUserId: String = ""
 ) {
     Card(
@@ -194,11 +198,16 @@ fun PostCard(
                     }
                     else {
                         Icon(imageVector = Icons.Filled.ThumbUp,
-                            contentDescription = "Liked")
+                            contentDescription = "Liked",
+                        modifier = Modifier.clickable {
+                            onDislikeClick()
+                        }
+                        )
                     }
                     Text(post.likes.toString())
                 }
             }
+
 
             if (post.imgUrl != "") {
                 Log.e("camera", "photo exists...")

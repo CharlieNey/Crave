@@ -38,6 +38,18 @@ class FeedScreenViewModel : ViewModel() {
                     ))
     }
 
+    fun unlikePost(postId: String) {
+        val postRef = FirebaseFirestore.getInstance()
+            .collection(WritePostScreenViewModel.COLLECTION_POSTS)
+            .document(postId)
+
+        postRef.update(
+            mapOf(
+                "likes" to FieldValue.increment(-1),
+                "likedBy" to FieldValue.arrayRemove(currentUserId)
+            ))
+    }
+
     fun postsList() = callbackFlow {
         val snapshotListener =
             FirebaseFirestore.getInstance().collection(WritePostScreenViewModel.COLLECTION_POSTS)
