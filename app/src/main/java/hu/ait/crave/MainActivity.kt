@@ -85,7 +85,11 @@ fun NavGraph(
             )
         }
         composable(Screen.MyRecipes.route) {
-            MyRecipesScreen()
+            MyRecipesScreen(
+                onNavigateToFeedScreen = {
+                    navController.navigate(Screen.Feed.route)
+                }
+            )
         }
     }
 }

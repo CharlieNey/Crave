@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,9 +31,9 @@ import hu.ait.crave.ui.screen.feed.PostCard
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyRecipesScreen(
-    feedScreenViewModel: FeedScreenViewModel = viewModel()
+    feedScreenViewModel: FeedScreenViewModel = viewModel(),
 
-    // onNavigateToRecipe: () -> Unit
+    onNavigateToFeedScreen: () -> Unit
 ) {
     val postListState = feedScreenViewModel.postsList().collectAsState(
         initial = MainScreenUIState.Init)
@@ -46,9 +47,11 @@ fun MyRecipesScreen(
                 ),
                 actions = {
                     IconButton(
-                        onClick = { }
+                        onClick = {
+                            onNavigateToFeedScreen()
+                        }
                     ) {
-                        Icon(Icons.Filled.Info, contentDescription = "Info")
+                        Icon(Icons.Filled.Home, contentDescription = "Info")
                     }
                 }
             )
