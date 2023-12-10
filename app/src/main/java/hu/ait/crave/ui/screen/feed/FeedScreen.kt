@@ -37,10 +37,18 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.icons.filled.Face6
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.ThumbUp
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -133,6 +141,8 @@ fun PostCard(
     onDislikeClick: () -> Unit = {},
     currentUserId: String = ""
 ) {
+    var expanded by remember { mutableStateOf(false) }
+
     Card(
         colors = CardDefaults.cardColors(
             containerColor =
@@ -170,9 +180,9 @@ fun PostCard(
                         fontSize = 20.sp
                     )
 
-                    Text(
-                        text = post.body,
-                    )
+//                    Text(
+//                        text = post.body,
+//                    )
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -188,36 +198,71 @@ fun PostCard(
                         )
                     }
 
+                    Spacer(modifier = Modifier.size(20.dp))
+
+
                     if (!post.likedBy.contains(currentUserId)) {
-                        Icon(imageVector = Icons.Outlined.ThumbUp,
+                        val heartPainter = painterResource(id = R.drawable.heart)
+
+                        Icon(painter = heartPainter,
                             contentDescription = "Like",
                             modifier = Modifier.clickable {
-                                    onLikeClick()
+                                onLikeClick()
                             }
+                                .size(23.dp)
                         )
-                    }
-                    else {
-                        Icon(imageVector = Icons.Filled.ThumbUp,
+                    } else {
+                        val filledHeartPainter = painterResource(id = R.drawable.heartfilled)
+
+                        Icon(painter = filledHeartPainter,
                             contentDescription = "Liked",
-                        modifier = Modifier.clickable {
-                            onDislikeClick()
-                        }
+                            modifier = Modifier.clickable {
+                                onDislikeClick()
+                            }
+                                .size(23.dp)
+
                         )
                     }
+                    Spacer(modifier = Modifier.size(10.dp))
                     Text(post.likes.toString())
                 }
+
+
+                IconButton(
+                    onClick = { expanded = !expanded }
+                ) {
+                    Icon(
+                        imageVector = if (expanded)
+                            Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                        contentDescription = if (expanded) {
+                            "Less"
+                        } else {
+                            "More"
+                        }
+                    )
+                }
+
+                // Show the description if expanded
+
             }
-
-
-            if (post.imgUrl != "") {
-                Log.e("camera", "photo exists...")
-                AsyncImage(
-                    model = post.imgUrl,
-                    modifier = Modifier.size(100.dp, 100.dp),
-                    contentDescription = "selected image"
-                )
+            if (expanded) {
+                Spacer(modifier = Modifier.size(10.dp))
+                Text(text = post.body)
             }
 
         }
+
+
+        if (post.imgUrl != "") {
+            Log.e("camera", "photo exists...")
+            AsyncImage(
+                model = post.imgUrl,
+                modifier = Modifier.size(100.dp, 100.dp),
+                contentDescription = "selected image"
+            )
+        }
+
     }
 }
+
+

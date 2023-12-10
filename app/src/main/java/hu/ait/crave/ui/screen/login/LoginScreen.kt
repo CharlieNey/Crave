@@ -1,6 +1,7 @@
 package hu.ait.crave.ui.screen.login
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import hu.ait.crave.R
+import hu.ait.crave.ui.theme.Yellow80
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -74,6 +76,8 @@ fun LoginScreen(
                 color = Color.Black,
                 modifier = Modifier.padding(horizontal = 15.dp)
             )
+            Spacer(modifier = Modifier.size(30.dp))
+
             Text(
                 text = "Please Login to Continue",
                 fontSize = 16.sp,
@@ -123,7 +127,8 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(0.8f),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                OutlinedButton(onClick = {
+                OutlinedButton(
+                    onClick = {
                     coroutineScope.launch {
                         val result = loginViewModel.loginUser(email,password)
                         if (result?.user != null) {
@@ -131,12 +136,20 @@ fun LoginScreen(
                         }
                     }
                 }) {
-                    Text(text = "Login")
+                    Text(
+                        text = "Login",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
                 }
                 OutlinedButton(onClick = {
                     loginViewModel.registerUser(email,password)
                 }) {
-                    Text(text = "Register")
+                    Text(
+                        text = "Register",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
                 }
             }
         }
