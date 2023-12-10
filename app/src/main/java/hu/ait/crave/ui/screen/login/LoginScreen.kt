@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.AutofillType
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -64,33 +65,24 @@ fun LoginScreen(
             .fillMaxSize()
             .background(eggyolkColor)
     ) {
-        
+
         Column(
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-            //Image(painter = R.drawable.craveicon, contentDescription = )
-            
-            Spacer(modifier = Modifier.size(35.dp))
-            
-            Text(
-                text = "Login",
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                modifier = Modifier.padding(horizontal = 15.dp),
-                fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+            Image(
+                painter = painterResource(id = R.drawable.cravelogo),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .size(350.dp) // Adjust the size as needed
             )
-            Spacer(modifier = Modifier.size(30.dp))
 
             Text(
                 text = "Please Login to Continue",
                 fontSize = 16.sp,
-                color = Color.Gray ,
+                color = Color.Gray,
                 fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
             )
             

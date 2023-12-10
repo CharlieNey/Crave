@@ -2,6 +2,7 @@ package hu.ait.crave.ui.screen.feed
 
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -87,13 +88,11 @@ fun FeedScreen(
                 title = {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth()
                             .wrapContentSize(Alignment.Center)
                     ) {
-                        Text(
-                            text = "Crave",
-                            fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)),
-                            fontSize = 55.sp,
+                        Image(
+                            painter = painterResource(id = R.drawable.cravelogo),
+                            contentDescription = "Logo",
                             modifier = Modifier
                                 .padding(16.dp)
                         )

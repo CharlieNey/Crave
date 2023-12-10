@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +24,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -44,24 +46,21 @@ fun MyRecipesScreen(
     feedScreenViewModel: FeedScreenViewModel = viewModel(),
 
     onNavigateToFeedScreen: () -> Unit
-) = Box(
-    Modifier
-        .fillMaxSize()
-        .background(eggyolkColor)
 ) {
     val postListState = feedScreenViewModel.postsList().collectAsState(
         initial = MainScreenUIState.Init)
-
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
                         "My Recipes",
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .wrapContentSize(Alignment.Center),
                         style = TextStyle(
                             fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)),
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 20.sp
+                            fontSize = 45.sp
                         )
                     )
                 },
@@ -79,8 +78,8 @@ fun MyRecipesScreen(
                 }
             )
         },
-    ) {
-        Column(modifier = Modifier.padding(it)) {
+        ) {
+        Column(modifier = Modifier.background(eggyolkColor).fillMaxSize().padding(it)) {
 
             if (postListState.value == MainScreenUIState.Init) {
                 Text(text = "Init...")
