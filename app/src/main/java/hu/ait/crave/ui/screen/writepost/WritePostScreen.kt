@@ -7,13 +7,16 @@ import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +26,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,6 +38,9 @@ import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import hu.ait.crave.R
 import hu.ait.crave.ui.navigation.Screen
+import hu.ait.crave.ui.screen.eggyolkColor
+import hu.ait.crave.ui.theme.Eggshell
+import hu.ait.crave.ui.theme.Eggyoke
 import java.io.File
 
 
@@ -68,18 +76,24 @@ fun WritePostScreen(
 
 
     Column(
-        modifier = Modifier.padding(20.dp)
+
+        modifier = Modifier
+        .fillMaxSize()
+        .background(eggyolkColor)
+            .padding(20.dp)
     ) {
         OutlinedTextField(value = postTitle,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Post title") },
+            label = { Text(text = "Post title", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))) },
             onValueChange = {
                 postTitle = it
             }
         )
         OutlinedTextField(value = postBody,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Post body") },
+            label = { Text(text = "Post body",
+                    fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+            },
             onValueChange = {
                 postBody = it
             }
@@ -103,12 +117,12 @@ fun WritePostScreen(
                     "Give permission for using photos with items"
                 }
 
-                Text(text = permissionText)
+                Text(text = permissionText, fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
 
                 Button(onClick = {
                     cameraPermissionState.launchPermissionRequest()
-                }) {
-                    Text(text = "Request permission")
+                } ) {
+                    Text(text = "Request permission", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
                 }
             }
         }
@@ -139,7 +153,7 @@ fun WritePostScreen(
             Thread.sleep(600)
             onNavigateToFeedScreen()
         }) {
-            Text(text = "Upload")
+            Text(text = "Upload", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)) )
         }
 
         when (writePostScreenViewModel.writePostUiState) {

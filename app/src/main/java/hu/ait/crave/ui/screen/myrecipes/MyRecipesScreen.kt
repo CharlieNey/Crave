@@ -1,6 +1,9 @@
 package hu.ait.crave.ui.screen.myrecipes
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import hu.ait.crave.R
+import hu.ait.crave.ui.screen.eggyolkColor
 import hu.ait.crave.ui.screen.feed.FeedScreenViewModel
 import hu.ait.crave.ui.screen.feed.MainScreenUIState
 import hu.ait.crave.ui.screen.feed.PostCard
@@ -40,6 +44,10 @@ fun MyRecipesScreen(
     feedScreenViewModel: FeedScreenViewModel = viewModel(),
 
     onNavigateToFeedScreen: () -> Unit
+) = Box(
+    Modifier
+        .fillMaxSize()
+        .background(eggyolkColor)
 ) {
     val postListState = feedScreenViewModel.postsList().collectAsState(
         initial = MainScreenUIState.Init)

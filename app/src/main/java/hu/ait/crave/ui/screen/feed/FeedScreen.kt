@@ -2,14 +2,21 @@ package hu.ait.crave.ui.screen.feed
 
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -49,12 +56,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import hu.ait.crave.R
 import hu.ait.crave.data.Post
+import hu.ait.crave.ui.screen.eggyolkColor
 import hu.ait.crave.ui.screen.recipe.RecipeScreen
+import hu.ait.crave.ui.theme.Eggshell
+import hu.ait.crave.ui.theme.Eggyoke
 import hu.ait.crave.ui.theme.LightYellow
 import hu.ait.crave.ui.theme.Orange
 import hu.ait.crave.ui.theme.Yellow80
@@ -65,19 +77,30 @@ fun FeedScreen(
     feedScreenViewModel: FeedScreenViewModel = viewModel(),
     onNavigateToWritePost: () -> Unit,
     onNavigateToMyRecipeScreen: () -> Unit
-) {
+)  {
     val postListState = feedScreenViewModel.postsList().collectAsState(
         initial = MainScreenUIState.Init)
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Crave") },
+                title = {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentSize(Alignment.Center)
+                    ) {
+                        Text(
+                            text = "Crave",
+                            fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)),
+                            fontSize = 55.sp,
+                            modifier = Modifier
+                                .padding(16.dp)
+                        )
+                    }
+                },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor =
-                    //MaterialTheme.colorScheme.secondaryContainer
-                    //Yellow80
-                    MaterialTheme.colorScheme.background
+                    containerColor = MaterialTheme.colorScheme.background
                 ),
                 actions = {
                     IconButton(
@@ -89,6 +112,7 @@ fun FeedScreen(
                     }
                 }
             )
+
         },
         floatingActionButton = {
                 FloatingActionButton(
@@ -105,15 +129,23 @@ fun FeedScreen(
                     )
                 }
         }
+    ) {Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(eggyolkColor) // Change to your "eggyolk" color
     ) {
         Column(modifier = Modifier.padding(it)) {
-
+            // Rest of your code
             if (postListState.value == MainScreenUIState.Init) {
-                Text(text = "Init...")
+                Text(
+                    text = "Init...",
+                    fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+                )
             } else if (postListState.value is MainScreenUIState.Success) {
                 LazyColumn() {
-                    items((postListState.value as MainScreenUIState.Success).postList){
-                        PostCard(post = it.post,
+                    items((postListState.value as MainScreenUIState.Success).postList) {
+                        PostCard(
+                            post = it.post,
                             onRemoveItem = {
                                 feedScreenViewModel.deletePost(it.postId)
                             },
@@ -123,11 +155,13 @@ fun FeedScreen(
                             onDislikeClick = {
                                 feedScreenViewModel.unlikePost(it.postId)
                             },
-                            currentUserId = feedScreenViewModel.currentUserId)
+                            currentUserId = feedScreenViewModel.currentUserId
+                        )
                     }
                 }
             }
         }
+    }
     }
 }
 
@@ -147,7 +181,7 @@ fun PostCard(
         colors = CardDefaults.cardColors(
             containerColor =
             //MaterialTheme.colorScheme.surfaceVariant,
-            LightYellow
+            Eggshell
         ),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
@@ -169,7 +203,8 @@ fun PostCard(
                 ) {
                     Text(
                         text = post.author,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
 
                     )
 
@@ -177,7 +212,8 @@ fun PostCard(
 
                     Text(
                         text = post.title,
-                        fontSize = 20.sp
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
                     )
 
 //                    Text(
@@ -224,7 +260,7 @@ fun PostCard(
                         )
                     }
                     Spacer(modifier = Modifier.size(10.dp))
-                    Text(post.likes.toString())
+                    Text(post.likes.toString(), fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
                 }
 
 
@@ -247,7 +283,7 @@ fun PostCard(
             }
             if (expanded) {
                 Spacer(modifier = Modifier.size(10.dp))
-                Text(text = post.body)
+                Text(text = post.body, fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
             }
 
         }

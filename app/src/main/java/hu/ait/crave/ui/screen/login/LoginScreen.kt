@@ -20,6 +20,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -33,6 +34,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.AutofillType
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -54,8 +57,13 @@ fun LoginScreen(
     var password by rememberSaveable { mutableStateOf("123456") }
 
     val coroutineScope = rememberCoroutineScope()
+    val eggyolkColor = Color(254, 236, 153)
 
-    Box() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(eggyolkColor)
+    ) {
         
         Column(
             modifier = Modifier
@@ -74,22 +82,25 @@ fun LoginScreen(
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(horizontal = 15.dp)
+                modifier = Modifier.padding(horizontal = 15.dp),
+                fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
             )
             Spacer(modifier = Modifier.size(30.dp))
 
             Text(
                 text = "Please Login to Continue",
                 fontSize = 16.sp,
-                color = Color.Gray
+                color = Color.Gray ,
+                fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
             )
             
-            Spacer(modifier = Modifier.size(70.dp))
+            Spacer(modifier = Modifier.size(40.dp))
 
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(0.8f),
                 label = {
-                    Text(text = "E-mail")
+                    Text(text = "E-mail",
+                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
                 },
                 value = email,
                 onValueChange = {
@@ -103,7 +114,8 @@ fun LoginScreen(
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(0.8f),
                 label = {
-                    Text(text = "Password")
+                    Text(text = "Password",
+                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
                 },
                 value = password,
                 onValueChange = { password = it },
@@ -139,7 +151,8 @@ fun LoginScreen(
                     Text(
                         text = "Login",
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = Color.Black,
+                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
                     )
                 }
                 OutlinedButton(onClick = {
@@ -148,7 +161,8 @@ fun LoginScreen(
                     Text(
                         text = "Register",
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = Color.Black,
+                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
                     )
                 }
             }
@@ -162,11 +176,11 @@ fun LoginScreen(
         ) {
             when (loginViewModel.loginUiState) {
                 is LoginUiState.Loading -> CircularProgressIndicator()
-                is LoginUiState.RegisterSuccess -> Text(text = "Registration OK")
+                is LoginUiState.RegisterSuccess -> Text(text = "Registration OK", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
                 is LoginUiState.Error -> Text(text = "Error: ${
                     (loginViewModel.loginUiState as LoginUiState.Error).error
-                }")
-                is LoginUiState.LoginSuccess -> Text(text = "Login OK")
+                }", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                is LoginUiState.LoginSuccess -> Text(text = "Login OK", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
                 LoginUiState.Init -> {}
             }
 
