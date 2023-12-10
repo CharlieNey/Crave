@@ -42,8 +42,7 @@ fun MyRecipesScreen(
             TopAppBar(
                 title = { Text("My Recipes") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor =
-                    MaterialTheme.colorScheme.secondaryContainer
+                    containerColor = Color.White
                 ),
                 actions = {
                     IconButton(

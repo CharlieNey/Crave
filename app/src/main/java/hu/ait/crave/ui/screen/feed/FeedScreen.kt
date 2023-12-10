@@ -3,9 +3,11 @@ package hu.ait.crave.ui.screen.feed
 
 import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,14 +35,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.material.icons.filled.Face6
 import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.ThumbUp
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import hu.ait.crave.R
 import hu.ait.crave.data.Post
 import hu.ait.crave.ui.screen.recipe.RecipeScreen
+import hu.ait.crave.ui.theme.LightYellow
+import hu.ait.crave.ui.theme.Orange
+import hu.ait.crave.ui.theme.Yellow80
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,7 +67,9 @@ fun FeedScreen(
                 title = { Text("Crave") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor =
-                    MaterialTheme.colorScheme.secondaryContainer
+                    //MaterialTheme.colorScheme.secondaryContainer
+                    //Yellow80
+                    MaterialTheme.colorScheme.background
                 ),
                 actions = {
                     IconButton(
@@ -66,25 +77,25 @@ fun FeedScreen(
                             onNavigateToMyRecipeScreen()
                         }
                     ) {
-                        Icon(Icons.Filled.Info, contentDescription = "Info")
+                        Icon(Icons.Filled.Face6, contentDescription = "Info")
                     }
                 }
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    onNavigateToWritePost()
-                },
-                containerColor = MaterialTheme.colorScheme.secondary,
-                shape = RoundedCornerShape(16.dp),
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Add,
-                    contentDescription = "Add",
-                    tint = Color.White,
-                )
-            }
+                FloatingActionButton(
+                    onClick = {
+                        onNavigateToWritePost()
+                    },
+                    containerColor = Orange,
+                    shape = CutCornerShape(20.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.Add,
+                        contentDescription = "Add",
+                        tint = Color.White,
+                    )
+                }
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
@@ -120,7 +131,9 @@ fun PostCard(
 ) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor =
+            //MaterialTheme.colorScheme.surfaceVariant,
+            LightYellow
         ),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
@@ -162,7 +175,7 @@ fun PostCard(
                 ) {
                     if (currentUserId.equals(post.uid)) {
                         Icon(
-                            imageVector = Icons.Filled.Delete,
+                            imageVector = Icons.Outlined.Delete,
                             contentDescription = "Delete",
                             modifier = Modifier.clickable {
                                 onRemoveItem()
