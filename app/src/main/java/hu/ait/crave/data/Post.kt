@@ -7,6 +7,7 @@ class Post {
         var title: String = "",
         var body: String = "",
         var imgUrl: String = "",
+        var ingredients: String = "",
         val likes: Int = 0,
         val likedBy: List<String> = emptyList()
 

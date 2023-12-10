@@ -48,7 +48,7 @@ fun SplashScreen(onNavigateToMain: () -> Unit) = Box(
         onNavigateToMain()
     }
     Image(
-        painter = painterResource(id = R.drawable.cutlery),
+        painter = painterResource(id = R.drawable.cravecircle),
         contentDescription = "Splash",
         alignment = Alignment.Center,
         modifier = Modifier
@@ -58,7 +58,7 @@ fun SplashScreen(onNavigateToMain: () -> Unit) = Box(
     )
     Text(
         text = "Welcome",
-        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)),
+        fontFamily = FontFamily(Font(R.font.opensans)),
         textAlign = TextAlign.Center,
         fontSize = 30.sp,
         modifier = Modifier

@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,10 +36,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import hu.ait.crave.R
-import hu.ait.crave.ui.navigation.Screen
 import hu.ait.crave.ui.screen.eggyolkColor
-import hu.ait.crave.ui.theme.Eggshell
-import hu.ait.crave.ui.theme.Eggyoke
 import java.io.File
 
 
@@ -53,6 +49,7 @@ fun WritePostScreen(
 ) {
     var postTitle by remember { mutableStateOf("") }
     var postBody by remember { mutableStateOf("") }
+    var postIngredients by remember { mutableStateOf("") }
 
     val context = LocalContext.current
 
@@ -84,18 +81,27 @@ fun WritePostScreen(
     ) {
         OutlinedTextField(value = postTitle,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Post title", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))) },
+            label = { Text(text = "Title", fontFamily = FontFamily(Font(R.font.opensans))) },
             onValueChange = {
                 postTitle = it
             }
         )
         OutlinedTextField(value = postBody,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Post body",
-                    fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+            label = { Text(text = "Description",
+                    fontFamily = FontFamily(Font(R.font.opensans)))
             },
             onValueChange = {
                 postBody = it
+            }
+        )
+        OutlinedTextField(value = postIngredients,
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text(text = "Ingredients",
+                fontFamily = FontFamily(Font(R.font.opensans)))
+            },
+            onValueChange = {
+                postIngredients = it
             }
         )
 
@@ -117,12 +123,12 @@ fun WritePostScreen(
                     "Give permission for using photos with items"
                 }
 
-                Text(text = permissionText, fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                Text(text = permissionText, fontFamily = FontFamily(Font(R.font.opensans)))
 
                 Button(onClick = {
                     cameraPermissionState.launchPermissionRequest()
                 } ) {
-                    Text(text = "Request permission", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                    Text(text = "Request permission", fontFamily = FontFamily(Font(R.font.opensans)))
                 }
             }
         }
@@ -137,7 +143,7 @@ fun WritePostScreen(
         Button(onClick = {
             if (imageUri == null) {
                 Log.e("camera", "no image in post")
-                writePostScreenViewModel.uploadPost(postTitle, postBody)
+                writePostScreenViewModel.uploadPost(postTitle, postBody, postIngredients)
             } else {
                 Log.e("camera", "image in post: $imageUri")
 
@@ -146,14 +152,17 @@ fun WritePostScreen(
                         context.contentResolver,
                         imageUri!!,
                         postTitle,
-                        postBody
+                        postBody,
+                        postIngredients,
                     )
             }
+
            //onNavigateToFeedScreen()
             Thread.sleep(600)
             onNavigateToFeedScreen()
-        }) {
-            Text(text = "Upload", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)) )
+        },
+            ) {
+            Text(text = "Upload", fontFamily = FontFamily(Font(R.font.opensans)) )
         }
 
         when (writePostScreenViewModel.writePostUiState) {

@@ -73,26 +73,28 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.cravelogo),
+                painter = painterResource(id = R.drawable.cravecircle),
                 contentDescription = "Logo",
                 modifier = Modifier
                     .size(350.dp) // Adjust the size as needed
             )
 
             Text(
-                text = "Please Login to Continue",
+                text = "Please login to continue.",
                 fontSize = 16.sp,
-                color = Color.Gray,
-                fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+                color = Color.Black,
+                fontFamily = FontFamily(Font(R.font.opensans))
             )
             
             Spacer(modifier = Modifier.size(40.dp))
 
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(0.8f),
+                modifier = Modifier
+                    .fillMaxWidth(0.8f),
+
                 label = {
                     Text(text = "E-mail",
-                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                        fontFamily = FontFamily(Font(R.font.opensans)))
                 },
                 value = email,
                 onValueChange = {
@@ -104,10 +106,12 @@ fun LoginScreen(
                 }
             )
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(0.8f),
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .padding(bottom = 25.dp),
                 label = {
                     Text(text = "Password",
-                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                        fontFamily = FontFamily(Font(R.font.opensans)))
                 },
                 value = password,
                 onValueChange = { password = it },
@@ -144,7 +148,7 @@ fun LoginScreen(
                         text = "Login",
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
-                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+                        fontFamily = FontFamily(Font(R.font.opensans))
                     )
                 }
                 OutlinedButton(onClick = {
@@ -154,7 +158,7 @@ fun LoginScreen(
                         text = "Register",
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
-                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+                        fontFamily = FontFamily(Font(R.font.opensans))
                     )
                 }
             }
@@ -168,11 +172,11 @@ fun LoginScreen(
         ) {
             when (loginViewModel.loginUiState) {
                 is LoginUiState.Loading -> CircularProgressIndicator()
-                is LoginUiState.RegisterSuccess -> Text(text = "Registration OK", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                is LoginUiState.RegisterSuccess -> Text(text = "Registration OK", fontFamily = FontFamily(Font(R.font.opensans)))
                 is LoginUiState.Error -> Text(text = "Error: ${
                     (loginViewModel.loginUiState as LoginUiState.Error).error
-                }", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
-                is LoginUiState.LoginSuccess -> Text(text = "Login OK", fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                }", fontFamily = FontFamily(Font(R.font.opensans)))
+                is LoginUiState.LoginSuccess -> Text(text = "Login OK", fontFamily = FontFamily(Font(R.font.opensans)))
                 LoginUiState.Init -> {}
             }
 

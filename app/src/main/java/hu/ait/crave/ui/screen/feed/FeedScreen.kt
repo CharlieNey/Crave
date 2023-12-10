@@ -88,13 +88,16 @@ fun FeedScreen(
                 title = {
                     Box(
                         modifier = Modifier
-                            .wrapContentSize(Alignment.Center)
+                            .wrapContentSize()
+
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.cravelogo),
+                            painter = painterResource(id = R.drawable.craverectangle),
                             contentDescription = "Logo",
                             modifier = Modifier
                                 .padding(16.dp)
+
+
                         )
                     }
                 },
@@ -118,7 +121,7 @@ fun FeedScreen(
                     onClick = {
                         onNavigateToWritePost()
                     },
-                    containerColor = Orange,
+                    containerColor = Yellow80,
                     shape = CutCornerShape(20.dp)
                 ) {
                     Icon(
@@ -131,14 +134,14 @@ fun FeedScreen(
     ) {Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(eggyolkColor) // Change to your "eggyolk" color
+            .background(Color.White) // Change to your "eggyolk" color
     ) {
         Column(modifier = Modifier.padding(it)) {
             // Rest of your code
             if (postListState.value == MainScreenUIState.Init) {
                 Text(
                     text = "Init...",
-                    fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+                    fontFamily = FontFamily(Font(R.font.opensans))
                 )
             } else if (postListState.value is MainScreenUIState.Success) {
                 LazyColumn() {
@@ -180,7 +183,7 @@ fun PostCard(
         colors = CardDefaults.cardColors(
             containerColor =
             //MaterialTheme.colorScheme.surfaceVariant,
-            Eggshell
+            Yellow80
         ),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
@@ -203,7 +206,7 @@ fun PostCard(
                     Text(
                         text = post.author,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+                        fontFamily = FontFamily(Font(R.font.opensans))
 
                     )
 
@@ -212,12 +215,9 @@ fun PostCard(
                     Text(
                         text = post.title,
                         fontSize = 20.sp,
-                        fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl))
+                        fontFamily = FontFamily(Font(R.font.opensans))
                     )
 
-//                    Text(
-//                        text = post.body,
-//                    )
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -259,7 +259,7 @@ fun PostCard(
                         )
                     }
                     Spacer(modifier = Modifier.size(10.dp))
-                    Text(post.likes.toString(), fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                    Text(post.likes.toString(), fontFamily = FontFamily(Font(R.font.opensans)))
                 }
 
 
@@ -282,7 +282,8 @@ fun PostCard(
             }
             if (expanded) {
                 Spacer(modifier = Modifier.size(10.dp))
-                Text(text = post.body, fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)))
+                Text(text = "Description: " + post.body, fontFamily = FontFamily(Font(R.font.opensans)))
+                Text(text = "Ingredients: " + post.ingredients, fontFamily = FontFamily(Font(R.font.opensans)))
             }
 
         }

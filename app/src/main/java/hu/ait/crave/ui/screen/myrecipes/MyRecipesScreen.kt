@@ -59,7 +59,7 @@ fun MyRecipesScreen(
                             .fillMaxSize()
                             .wrapContentSize(Alignment.Center),
                         style = TextStyle(
-                            fontFamily = FontFamily(Font(R.font.aovelsansrounded_rddl)),
+                            fontFamily = FontFamily(Font(R.font.opensans)),
                             fontSize = 45.sp
                         )
                     )

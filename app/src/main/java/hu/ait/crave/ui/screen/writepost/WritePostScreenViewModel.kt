@@ -43,6 +43,7 @@ class WritePostScreenViewModel : ViewModel() {
     fun uploadPost(
         title: String,
         postBody: String,
+        postIngredients: String,
         imgUrl: String = ""
     ) {
         writePostUiState = WritePostUiState.LoadingPostUpload
@@ -53,6 +54,7 @@ class WritePostScreenViewModel : ViewModel() {
             author = auth.currentUser!!.email!!,
             title = title,
             body = postBody,
+            ingredients = postIngredients,
             imgUrl = imgUrl
         )
 
@@ -72,7 +74,7 @@ class WritePostScreenViewModel : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.P)
     public fun uploadPostImage(
         contentResolver: ContentResolver, imageUri: Uri,
-        title: String, postBody: String
+        title: String, postBody: String, postIngredients: String
     ) {
         viewModelScope.launch {
             writePostUiState = WritePostUiState.LoadingImageUpload
@@ -102,7 +104,7 @@ class WritePostScreenViewModel : ViewModel() {
                         object : OnCompleteListener<Uri> {
                             override fun onComplete(task: Task<Uri>) {
                                 // the public URL of the image is: task.result.toString()
-                                uploadPost(title, postBody, task.result.toString())
+                                uploadPost(title, postBody, postIngredients, task.result.toString())
                             }
                         })
                 }
