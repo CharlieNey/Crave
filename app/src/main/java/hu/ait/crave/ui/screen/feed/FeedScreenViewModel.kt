@@ -13,11 +13,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
 class FeedScreenViewModel : ViewModel() {
-    var currentUserId: String
-    init {
-        currentUserId = Firebase.auth.currentUser!!.uid
-        //currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
-    }
+    var currentUserId: String = Firebase.auth.currentUser!!.uid
 
     fun deletePost(postKey: String) {
         FirebaseFirestore.getInstance().collection(

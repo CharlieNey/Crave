@@ -5,24 +5,17 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -47,12 +40,8 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.icons.filled.Face6
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.material.icons.outlined.ThumbUp
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -65,12 +54,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import hu.ait.crave.R
 import hu.ait.crave.data.Post
-import hu.ait.crave.ui.screen.eggyolkColor
-import hu.ait.crave.ui.screen.recipe.RecipeScreen
-import hu.ait.crave.ui.theme.Eggshell
-import hu.ait.crave.ui.theme.Eggyoke
-import hu.ait.crave.ui.theme.LightYellow
-import hu.ait.crave.ui.theme.Orange
 import hu.ait.crave.ui.theme.Yellow80
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -169,7 +152,6 @@ fun FeedScreen(
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostCard(
     post: Post.Post,
@@ -183,7 +165,6 @@ fun PostCard(
     Card(
         colors = CardDefaults.cardColors(
             containerColor =
-            //MaterialTheme.colorScheme.surfaceVariant,
             Yellow80
         ),
         shape = RoundedCornerShape(20.dp),
@@ -223,7 +204,7 @@ fun PostCard(
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (currentUserId.equals(post.uid)) {
+                    if (currentUserId == post.uid) {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
                             contentDescription = stringResource(R.string.delete),
