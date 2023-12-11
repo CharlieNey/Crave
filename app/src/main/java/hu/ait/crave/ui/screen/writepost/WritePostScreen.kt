@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -75,20 +76,20 @@ fun WritePostScreen(
     Column(
 
         modifier = Modifier
-        .fillMaxSize()
-        .background(eggyolkColor)
+            .fillMaxSize()
+            .background(eggyolkColor)
             .padding(20.dp)
     ) {
         OutlinedTextField(value = postTitle,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Title", fontFamily = FontFamily(Font(R.font.opensans))) },
+            label = { Text(text = stringResource(R.string.title), fontFamily = FontFamily(Font(R.font.opensans))) },
             onValueChange = {
                 postTitle = it
             }
         )
         OutlinedTextField(value = postBody,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Description",
+            label = { Text(text = stringResource(R.string.description),
                     fontFamily = FontFamily(Font(R.font.opensans)))
             },
             onValueChange = {
@@ -97,7 +98,7 @@ fun WritePostScreen(
         )
         OutlinedTextField(value = postIngredients,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Ingredients",
+            label = { Text(text = stringResource(R.string.ingredients),
                 fontFamily = FontFamily(Font(R.font.opensans)))
             },
             onValueChange = {
@@ -113,14 +114,14 @@ fun WritePostScreen(
                 imageUri = uri
                 cameraLauncher.launch(uri) // opens the built in camera
             }) {
-                Text(text = "Take photo")
+                Text(text = stringResource(R.string.take_photo))
             }
         } else {
             Column() {
                 val permissionText = if (cameraPermissionState.status.shouldShowRationale) {
-                    "Please reconsider giving the camera persmission it is needed if you want to take photo for the message"
+                    stringResource(R.string.please_reconsider_giving_the_camera_persmission_it_is_needed_if_you_want_to_take_photo_for_the_message)
                 } else {
-                    "Give permission for using photos with items"
+                    stringResource(R.string.give_permission_for_using_photos_with_items)
                 }
 
                 Text(text = permissionText, fontFamily = FontFamily(Font(R.font.opensans)))
@@ -128,7 +129,7 @@ fun WritePostScreen(
                 Button(onClick = {
                     cameraPermissionState.launchPermissionRequest()
                 } ) {
-                    Text(text = "Request permission", fontFamily = FontFamily(Font(R.font.opensans)))
+                    Text(text = stringResource(R.string.request_permission), fontFamily = FontFamily(Font(R.font.opensans)))
                 }
             }
         }

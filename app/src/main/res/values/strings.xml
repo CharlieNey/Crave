@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">Crave</string>
+    <string name="logo">Logo</string>
+    <string name="info">Info</string>
+    <string name="add">Add</string>
+    <string name="please_login_to_continue">Please login to continue.</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="registration_ok">Registration OK</string>
+    <string name="login_ok">Login OK</string>
+    <string name="my_recipes">My Recipes</string>
+    <string name="init">Init...</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="take_photo">Take photo</string>
+    <string name="please_reconsider_giving_the_camera_persmission_it_is_needed_if_you_want_to_take_photo_for_the_message">Please reconsider giving the camera persmission it is needed if you want to take photo for the message</string>
+    <string name="give_permission_for_using_photos_with_items">Give permission for using photos with items</string>
+    <string name="request_permission">Request permission</string>
+    <string name="splash">Splash</string>
+    <string name="welcome">Welcome</string>
+    <string name="delete">Delete</string>
+    <string name="like">Like</string>
+    <string name="liked">Liked</string>
+    <string name="less">Less</string>
+    <string name="more">More</string>
+    <string name="description1">"Description: "</string>
+    <string name="ingredients2">"Ingredients: "</string>
+    <string name="selected_image">selected image</string>
 </resources>

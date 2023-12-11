@@ -49,7 +49,7 @@ fun SplashScreen(onNavigateToMain: () -> Unit) = Box(
     }
     Image(
         painter = painterResource(id = R.drawable.cravecircle),
-        contentDescription = "Splash",
+        contentDescription = stringResource(R.string.splash),
         alignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
@@ -57,7 +57,7 @@ fun SplashScreen(onNavigateToMain: () -> Unit) = Box(
             .scale(scale.value)
     )
     Text(
-        text = "Welcome",
+        text = stringResource(R.string.welcome),
         fontFamily = FontFamily(Font(R.font.opensans)),
         textAlign = TextAlign.Center,
         fontSize = 30.sp,

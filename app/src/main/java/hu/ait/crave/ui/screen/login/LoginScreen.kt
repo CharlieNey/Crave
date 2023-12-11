@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.AutofillType
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -80,7 +81,7 @@ fun LoginScreen(
             )
 
             Text(
-                text = "Please login to continue.",
+                text = stringResource(R.string.please_login_to_continue),
                 fontSize = 16.sp,
                 color = Color.Black,
                 fontFamily = FontFamily(Font(R.font.opensans))
@@ -93,7 +94,7 @@ fun LoginScreen(
                     .fillMaxWidth(0.8f),
 
                 label = {
-                    Text(text = "E-mail",
+                    Text(text = stringResource(R.string.e_mail),
                         fontFamily = FontFamily(Font(R.font.opensans)))
                 },
                 value = email,
@@ -110,7 +111,7 @@ fun LoginScreen(
                     .fillMaxWidth(0.8f)
                     .padding(bottom = 25.dp),
                 label = {
-                    Text(text = "Password",
+                    Text(text = stringResource(R.string.password),
                         fontFamily = FontFamily(Font(R.font.opensans)))
                 },
                 value = password,
@@ -155,7 +156,7 @@ fun LoginScreen(
                     loginViewModel.registerUser(email,password)
                 }) {
                     Text(
-                        text = "Register",
+                        text = stringResource(R.string.register),
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
                         fontFamily = FontFamily(Font(R.font.opensans))
@@ -172,11 +173,11 @@ fun LoginScreen(
         ) {
             when (loginViewModel.loginUiState) {
                 is LoginUiState.Loading -> CircularProgressIndicator()
-                is LoginUiState.RegisterSuccess -> Text(text = "Registration OK", fontFamily = FontFamily(Font(R.font.opensans)))
+                is LoginUiState.RegisterSuccess -> Text(text = stringResource(R.string.registration_ok), fontFamily = FontFamily(Font(R.font.opensans)))
                 is LoginUiState.Error -> Text(text = "Error: ${
                     (loginViewModel.loginUiState as LoginUiState.Error).error
                 }", fontFamily = FontFamily(Font(R.font.opensans)))
-                is LoginUiState.LoginSuccess -> Text(text = "Login OK", fontFamily = FontFamily(Font(R.font.opensans)))
+                is LoginUiState.LoginSuccess -> Text(text = stringResource(R.string.login_ok), fontFamily = FontFamily(Font(R.font.opensans)))
                 LoginUiState.Init -> {}
             }
 

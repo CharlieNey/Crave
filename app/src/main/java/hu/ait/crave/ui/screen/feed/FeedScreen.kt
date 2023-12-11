@@ -57,6 +57,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -93,7 +94,7 @@ fun FeedScreen(
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.craverectangle),
-                            contentDescription = "Logo",
+                            contentDescription = stringResource(R.string.logo),
                             modifier = Modifier
                                 .padding(16.dp)
 
@@ -110,7 +111,7 @@ fun FeedScreen(
                             onNavigateToMyRecipeScreen()
                         }
                     ) {
-                        Icon(Icons.Filled.Face6, contentDescription = "Info")
+                        Icon(Icons.Filled.Face6, contentDescription = stringResource(R.string.info))
                     }
                 }
             )
@@ -126,7 +127,7 @@ fun FeedScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Add,
-                        contentDescription = "Add",
+                        contentDescription = stringResource(R.string.add),
                         tint = Color.White,
                     )
                 }
@@ -225,7 +226,7 @@ fun PostCard(
                     if (currentUserId.equals(post.uid)) {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
-                            contentDescription = "Delete",
+                            contentDescription = stringResource(R.string.delete),
                             modifier = Modifier.clickable {
                                 onRemoveItem()
                             },
@@ -240,20 +241,22 @@ fun PostCard(
                         val heartPainter = painterResource(id = R.drawable.heart)
 
                         Icon(painter = heartPainter,
-                            contentDescription = "Like",
-                            modifier = Modifier.clickable {
-                                onLikeClick()
-                            }
+                            contentDescription = stringResource(R.string.like),
+                            modifier = Modifier
+                                .clickable {
+                                    onLikeClick()
+                                }
                                 .size(23.dp)
                         )
                     } else {
                         val filledHeartPainter = painterResource(id = R.drawable.heartfilled)
 
                         Icon(painter = filledHeartPainter,
-                            contentDescription = "Liked",
-                            modifier = Modifier.clickable {
-                                onDislikeClick()
-                            }
+                            contentDescription = stringResource(R.string.liked),
+                            modifier = Modifier
+                                .clickable {
+                                    onDislikeClick()
+                                }
                                 .size(23.dp)
 
                         )
@@ -270,9 +273,9 @@ fun PostCard(
                         imageVector = if (expanded)
                             Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                         contentDescription = if (expanded) {
-                            "Less"
+                            stringResource(R.string.less)
                         } else {
-                            "More"
+                            stringResource(R.string.more)
                         }
                     )
                 }
@@ -282,8 +285,8 @@ fun PostCard(
             }
             if (expanded) {
                 Spacer(modifier = Modifier.size(10.dp))
-                Text(text = "Description: " + post.body, fontFamily = FontFamily(Font(R.font.opensans)))
-                Text(text = "Ingredients: " + post.ingredients, fontFamily = FontFamily(Font(R.font.opensans)))
+                Text(text = stringResource(R.string.description1) + post.body, fontFamily = FontFamily(Font(R.font.opensans)))
+                Text(text = stringResource(R.string.ingredients2) + post.ingredients, fontFamily = FontFamily(Font(R.font.opensans)))
             }
 
         }
@@ -294,7 +297,7 @@ fun PostCard(
             AsyncImage(
                 model = post.imgUrl,
                 modifier = Modifier.size(100.dp, 100.dp),
-                contentDescription = "selected image"
+                contentDescription = stringResource(R.string.selected_image)
             )
         }
 

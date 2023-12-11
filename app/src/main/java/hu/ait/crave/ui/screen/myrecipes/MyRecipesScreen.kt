@@ -27,6 +27,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -54,7 +55,7 @@ fun MyRecipesScreen(
             TopAppBar(
                 title = {
                     Text(
-                        "My Recipes",
+                        stringResource(R.string.my_recipes),
                         modifier = Modifier
                             .fillMaxSize()
                             .wrapContentSize(Alignment.Center),
@@ -79,10 +80,13 @@ fun MyRecipesScreen(
             )
         },
         ) {
-        Column(modifier = Modifier.background(eggyolkColor).fillMaxSize().padding(it)) {
+        Column(modifier = Modifier
+            .background(eggyolkColor)
+            .fillMaxSize()
+            .padding(it)) {
 
             if (postListState.value == MainScreenUIState.Init) {
-                Text(text = "Init...")
+                Text(text = stringResource(R.string.init))
             } else if (postListState.value is MainScreenUIState.Success) {
                 LazyColumn() {
                     items((postListState.value as MainScreenUIState.Success).postList){
