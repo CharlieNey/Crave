@@ -39,22 +39,6 @@ class LoginScreenViewModel : ViewModel() {
         }
     }
 
-    /*fun loginUser(email: String, password: String) {
-        loginUiState = LoginUiState.Loading
-        try {
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener{
-                    loginUiState = LoginUiState.LoginSuccess
-
-                }
-                .addOnFailureListener{
-                    loginUiState = LoginUiState.Error(it.message)
-                }
-        } catch (e: Exception) {
-            loginUiState = LoginUiState.Error(e.message)
-        }
-    }*/
-
     suspend fun loginUser(email: String, password: String) : AuthResult? {
         loginUiState = LoginUiState.Loading
 

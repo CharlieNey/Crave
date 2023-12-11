@@ -70,11 +70,7 @@ fun WritePostScreen(
         android.Manifest.permission.CAMERA
     )
 
-
-
-
     Column(
-
         modifier = Modifier
             .fillMaxSize()
             .background(eggyolkColor)
@@ -157,8 +153,6 @@ fun WritePostScreen(
                         postIngredients,
                     )
             }
-
-           //onNavigateToFeedScreen()
             Thread.sleep(600)
             onNavigateToFeedScreen()
         },
@@ -185,9 +179,6 @@ fun WritePostScreen(
 
             else -> {}
         }
-        //Thread.sleep(600)
-        //onNavigateToFeedScreen()
-
     }
 }
 
